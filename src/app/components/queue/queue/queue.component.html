@@ -1,0 +1,16 @@
+<div class="table-responsive">
+    <table class="table">
+        <thead class="thead-dark">
+        <tr class="table-primary">
+            <th scope="col">Name</th>
+            <th scope="col">Signal Stamp</th>
+        </tr>
+        </thead>
+        <tbody *ngIf="signalList">
+        <tr *ngFor="let signal of signalList">
+            <td>{{ signal.name }}</td>
+            <td>{{ signal.signalStamp }}</td>
+        </tr>
+        </tbody>
+    </table>
+</div>

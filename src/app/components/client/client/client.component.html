@@ -1,0 +1,49 @@
+<h1>hi {{ userName }}</h1>
+<div>
+    <div *ngIf="!hasOrdered; else elseBlock">
+        <h4>Please choose product/s from below:</h4><br>
+        <div *ngFor="let product of products;let i = index">
+            <div>
+                <input type="checkbox" id="i" (change)="onCheckboxChanged(i, $event)">{{ product }}
+            </div>
+        </div>
+        <button (click)="order()">Order</button>
+    </div>
+    <ng-template #elseBlock>
+        <!-- <div *ngFor="let order of orders; let i = index">
+            <div >{{ order }}</div>
+        </div>
+        <button (click)="cancelOrder()">Cancel Order</button> -->
+        <div *ngIf="isUserInitialized">
+            <div class="table-responsive">
+                <table class="table">
+                    <thead class="thead-dark">
+                    <tr class="table-primary">
+                        <th scope="col">Order Number</th>
+                        <th scope="col">Name</th>
+                        <th scope="col">Order/s</th>
+                        <th scope="col">Status</th>
+                        <th scope="col"></th>
+                    </tr>
+                    </thead>
+                    <tbody *ngIf="signalList">
+                    <tr *ngFor="let signal of signalList">
+                        <td>{{ signal.id }}</td>
+                        <td>{{ signal.name }}</td>
+                        <td>{{ signal.orders }}</td>
+                        <td>{{ signal.status }}</td>
+                        <td>
+                            <div *ngIf="isVisibileForUser(signal)">
+                                <button (click)="cancelOrder()">Cancel</button>
+                            </div>
+                            <div *ngIf="isPickupButtonVisible(signal)">
+                                <button (click)="cancelOrder()">Pickup</button>
+                            </div>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </ng-template>
+</div>

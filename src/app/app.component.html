@@ -1,0 +1,23 @@
+<!-- <router-outlet></router-outlet> -->
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="span6" style="float:none; margin:0 auto;">
+
+      <div [ngSwitch]="userType">
+        <div *ngSwitchCase="userTypes.NONE">
+          <h4>Choose User</h4>
+          <button (click)="setUserAsClient()" >CLIENT</button>
+          <button (click)="setUserAsBarista()" >BARISTA</button>
+        </div>
+        <div *ngSwitchCase="userTypes.CLIENT">
+          <app-client></app-client>
+        </div>
+        <div *ngSwitchCase="userTypes.BARISTA">
+          <app-barista></app-barista>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>

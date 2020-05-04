@@ -1,0 +1,31 @@
+<div class="table-responsive">
+    <table class="table">
+        <thead class="thead-dark">
+        <tr class="table-primary">
+            <th scope="col">Order Number</th>
+            <th scope="col">Name</th>
+            <th scope="col">Order/s</th>
+            <th scope="col">Status</th>
+            <th scope="col"></th>
+        </tr>
+        </thead>
+        <tbody *ngIf="signalList">
+        <tr *ngFor="let signal of signalList">
+            <td>{{ signal.id }}</td>
+            <td>{{ signal.name }}</td>
+            <td>{{ signal.orders }}</td>
+            <td>{{ signal.status }}</td>
+            <td>
+                <div *ngIf="isVisibileByStatus(signal.status); else elseBlock">
+                    <button (click)="processUserOrder(signal)">Update</button>
+                    <button (click)="cancelUserOrder(signal)">Cancel</button>
+                    <button (click)="deleteUser(signal.id)">Delete</button>
+                </div>
+                <ng-template #elseBlock>
+                    <button (click)="deleteUser(signal.id)">Delete</button>
+                </ng-template>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
